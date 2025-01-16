@@ -2,4 +2,4 @@ transformers
 streamlit
 torch
 Accelerate
-psutil
+
