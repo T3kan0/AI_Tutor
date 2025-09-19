@@ -2,4 +2,3 @@ streamlit
 fitz
 groq
 pymupdf
-re
