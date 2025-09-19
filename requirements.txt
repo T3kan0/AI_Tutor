@@ -1,5 +1,5 @@
-transformers
 streamlit
-torch
-Accelerate
-
+fitz
+groq
+pymupdf
+re
