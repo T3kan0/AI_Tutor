@@ -4,7 +4,9 @@ from groq import Groq
 import os
 import pymupdf
 import re  
-
+import pickle
+from pathlib import Path
+import streamlit_authenticator as stauth
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
