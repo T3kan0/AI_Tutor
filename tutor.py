@@ -63,23 +63,22 @@ def handle_conversation():
         unsafe_allow_html=True
     )
 
-# Sidebar "New Chat" button
-col1, col2, col3 = st.sidebar.columns([1, 2, 1])
-with col2:    
-    butt = st.sidebar.button("New Chat")   
-        
-        
-# Title
-st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
-st.markdown('---')
-st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
-st.sidebar.markdown('---')
+    # Sidebar "New Chat" button
+    col1, col2, col3 = st.sidebar.columns([1, 2, 1])
+    with col2:    
+        butt = st.sidebar.button("New Chat")   
 
-# Sidebar upload
-st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
-uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
+    # Title
+    st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
+    st.markdown('---')
+    st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
+    st.sidebar.markdown('---')
 
-if butt:
+    # Sidebar upload
+    st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
+    uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
+
+    if butt:
         st.session_state.messages = []  
         st.session_state.pdf_content = ""  
         st.success("New chat started! Upload a new PDF if needed.")
