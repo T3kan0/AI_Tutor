@@ -6,6 +6,23 @@ import pymupdf
 import re  
 from authlib.integrations.requests_client import OAuth2Session
 
+
+# Load Google OIDC credentials from Streamlit secrets
+google_client_id = st.secrets["google_oidc"]["client_id"]
+google_client_secret = st.secrets["google_oidc"]["client_secret"]
+google_discovery_url = st.secrets["google_oidc"]["discovery_url"]
+
+# Initialize OAuth session
+oauth = OAuth2Session(
+    client_id=google_client_id,
+    client_secret=google_client_secret,
+)
+
+# Load API key from Streamlit secrets
+api_key = st.secrets["groq"]["api_key"]
+# OpenAI 8000 tokens
+client = Groq(api_key=api_key)
+
 template = """
 You are an Assistant Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at a South African university.
 Your goal is to help students engage with academic materials (such as PDFs they upload) and support them in their learning journey.
@@ -22,13 +39,6 @@ Question: {question}
 
 Answer:
 """
-
-# Load API key from Streamlit secrets
-api_key = st.secrets["groq"]["api_key"]
-
-# OpenAI 8000 tokens
-client = Groq(api_key=api_key)
-
 
 
 def extract_text_from_pdf(pdf_file):
