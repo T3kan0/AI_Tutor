@@ -5,20 +5,6 @@ import os
 import pymupdf
 import re  
 
-# Login button
-if st.button("Login with Google"):
-    user = st.login("google")  # Triggers Google OIDC login
-
-    if user:
-        if user.email.endswith("@gmail.com"):
-            st.success(f"✅ Welcome Student 🎓 {user.email}")
-        else:
-            st.error("Unauthorized: Please use a university email.")
-    else:
-        st.warning("Please log in with your Google account.")
-else:
-    st.info("Click the button above to log in with Google.")
-
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
