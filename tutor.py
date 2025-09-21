@@ -23,7 +23,7 @@ credentials = {
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
-login_info = authenticator.login("main", label="Login")
+login_info = authenticator.login("main")  # "main", "sidebar", or "unrendered"
 
 if login_info:
     authentication_status = login_info["authentication_status"]
