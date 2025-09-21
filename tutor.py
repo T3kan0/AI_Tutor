@@ -17,9 +17,11 @@ with file_path.open('rb') as file:
 
 credentials = {
     "usernames": {
-        u: {"name": n, "password": p} for u, n, p in zip(usernames, names, hashed_passwords)
+        u: {"name": n, "password": p, "email": f"{u.lower()}@example.com"}
+        for u, n, p in zip(usernames, names, hashed_passwords)
     }
 }
+
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
