@@ -14,7 +14,11 @@ usernames = ['A_STEP', 'A_STEP']
 
 file_path = Path(__file__).parent / 'hashed_pw.pkl'
 with file_path.open('rb') as file:
-    pickle.load(file)
+    hashed_passwords = pickle.load(file)
+
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
+                                   'aitutor', 'abcdef', cookie_expiry_days = 30)
+
 
 
 # Load API key from Streamlit secrets
