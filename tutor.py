@@ -28,6 +28,30 @@ credentials = {
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
+# --- Step 4: Login ---
+name, authentication_status, username = authenticator.login("Login", "main")
+
+if authentication_status:
+    st.success(f"Welcome {name}!")
+    if username.startswith("student"):
+        st.info("🎓 You are logged in as a student.")
+    else:
+        st.info("👩‍🏫 You are logged in as a tutor.")
+
+elif authentication_status is False:
+    st.error("Username/password is incorrect")
+
+elif authentication_status is None:
+    st.warning("Please enter your username and password")
+
+
+
+
+# Load API key from Streamlit secrets
+api_key = st.secrets["groq"]["api_key"]
+# OpenAI 8000 tokens
+client = Groq(api_key=api_key)
+
 
 template = """
 You are an Assistant Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at a South African university.
