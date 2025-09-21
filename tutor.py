@@ -23,21 +23,24 @@ credentials = {
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
-# --- Step 4: Login ---
-name, authentication_status, username = authenticator.login("main")
+login_info = authenticator.login("main")
 
-if authentication_status:
-    st.success(f"Welcome {name}!")
-    if username.startswith("student"):
-        st.info("🎓 You are logged in as a student.")
-    else:
-        st.info("👩‍🏫 You are logged in as a tutor.")
+if login_info:
+    authentication_status = login_info["authentication_status"]
+    name = login_info["name"]
+    username = login_info["username"]
 
-elif authentication_status is False:
-    st.error("Username/password is incorrect")
+    if authentication_status:
+        st.success(f"Welcome {name}!")
+        if username.startswith("student"):
+            st.info("🎓 You are logged in as a student.")
+        else:
+            st.info("👩‍🏫 You are logged in as a tutor.")
+    elif authentication_status is False:
+        st.error("Username/password is incorrect")
+    elif authentication_status is None:
+        st.warning("Please enter your username and password")
 
-elif authentication_status is None:
-    st.warning("Please enter your username and password")
 
 
 
