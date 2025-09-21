@@ -4,6 +4,7 @@ from groq import Groq
 import os
 import pymupdf
 import re  
+
 st.write(st.secrets["google_oidc"])
 # Google login
 user = st.login("google_oidc")
