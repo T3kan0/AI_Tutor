@@ -5,7 +5,6 @@ import os
 import pymupdf
 import re  
 
-st.write(st.secrets["google"])
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
