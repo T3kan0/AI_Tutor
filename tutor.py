@@ -9,7 +9,7 @@ from pathlib import Path
 import streamlit_authenticator as stauth
 
 names = ['Tutor', 'Student']
-usernames = ['CTL', 'A_STEP']
+usernames = ['tutor', 'student']
 
 file_path = Path(__file__).parent / 'hashed_pw.pkl'
 with file_path.open('rb') as file:
@@ -23,7 +23,7 @@ credentials = {
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
-login_info = authenticator.login("main")
+login_info = authenticator.login("Login", "main")
 
 if login_info:
     authentication_status = login_info["authentication_status"]
