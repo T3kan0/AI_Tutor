@@ -4,6 +4,7 @@ from groq import Groq
 import os
 import pymupdf
 import re  
+from authlib.integrations.requests_client import OAuth2Session
 
 template = """
 You are an Assistant Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at a South African university.
