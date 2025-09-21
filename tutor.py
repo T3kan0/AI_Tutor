@@ -6,23 +6,6 @@ import pymupdf
 import re  
 
 st.write(st.secrets["google"])
-# Google login
-user = st.login("google")
-
-if user:
-    st.write(f"✅ Logged in as: {user.email}")
-    st.write(user)  # shows all available attributes from Google (name, picture, etc.)
-
-    # Example: restrict based on domain
-    if user.email.endswith("@ufs4life.ac.za"):
-        st.success("Welcome Student 🎓")
-    elif user.email.endswith("@ufs.ac.za"):
-        st.success("Welcome Staff 👩‍🏫")
-    else:
-        st.error("Unauthorized: Please use a university email.")
-else:
-    st.warning("Please log in with your Google account.")
-
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
