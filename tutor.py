@@ -5,11 +5,10 @@ import os
 import pymupdf
 import re  
 
-if not st.user.is_logged_in:
-    st.login("google")
+if not st.user:  # checks if the user is not logged in
+    st.login("google")  # triggers the login flow
 else:
-    st.write(f"Hello, {st.user.name}!")
-
+    st.write(f"Hello, {st.user.name}!")  # user is logged in
 
 
 # Load API key from Streamlit secrets
