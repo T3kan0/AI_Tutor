@@ -67,18 +67,19 @@ def handle_conversation():
 col1, col2, col3 = st.sidebar.columns([1, 2, 1])
 with col2:    
     butt = st.sidebar.button("New Chat")   
+        
+        
+# Title
+st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
+st.markdown('---')
+st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
+st.sidebar.markdown('---')
 
-    # Title
-    st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
-    st.markdown('---')
-    st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
-    st.sidebar.markdown('---')
+# Sidebar upload
+st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
+uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
 
-    # Sidebar upload
-    st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
-    uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
-
-    if butt:
+if butt:
         st.session_state.messages = []  
         st.session_state.pdf_content = ""  
         st.success("New chat started! Upload a new PDF if needed.")
