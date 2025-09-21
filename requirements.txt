@@ -2,3 +2,4 @@ streamlit
 fitz
 groq
 pymupdf
+authlib
