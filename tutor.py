@@ -32,7 +32,10 @@ if login_info:
 
     if authentication_status:
         st.success(f"Welcome {name}!")
-
+        if username.startswith("student"):
+            st.info("🎓 You are logged in as a student.")
+        else:
+            st.info("👩‍🏫 You are logged in as a tutor.")
 
         # Load API key from Streamlit secrets
         api_key = st.secrets["groq"]["api_key"]
@@ -185,11 +188,6 @@ if login_info:
         if __name__ == "__main__":
             handle_conversation()
 
-
-        if username.startswith("student"):
-            st.info("🎓 You are logged in as a student.")
-        else:
-            st.info("👩‍🏫 You are logged in as a tutor.")
     elif authentication_status is False:
         st.error("Username/password is incorrect")
     elif authentication_status is None:
