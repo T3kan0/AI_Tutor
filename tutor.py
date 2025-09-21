@@ -5,9 +5,9 @@ import os
 import pymupdf
 import re  
 
-st.write(st.secrets["google_oidc"])
+st.write(st.secrets["google"])
 # Google login
-user = st.login("google_oidc")
+user = st.login("google")
 
 if user:
     st.write(f"✅ Logged in as: {user.email}")
