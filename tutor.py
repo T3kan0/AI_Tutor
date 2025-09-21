@@ -8,7 +8,7 @@ import re
 if not st.user:  # checks if the user is not logged in
     st.login("google")  # triggers the login flow
 else:
-    st.write(f"Hello, {st.user.name}!")  # user is logged in
+    st.write(f"Hello, {st.user.email}!")
 
 
 # Load API key from Streamlit secrets
