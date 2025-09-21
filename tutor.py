@@ -4,7 +4,6 @@ from groq import Groq
 import os
 import pymupdf
 import re  
-from authlib.integrations.requests_client import OAuth2Session
 
 # Google login
 user = st.login("google_oidc")
