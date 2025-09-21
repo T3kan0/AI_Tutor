@@ -1,5 +1,5 @@
 streamlit==1.49.1
 fitz
 groq
-pymupdf
+PyMuPDF
 authlib
