@@ -24,7 +24,7 @@ credentials = {
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
 # --- Step 4: Login ---
-name, authentication_status, username = authenticator.login("Login", "main")
+name, authentication_status, username = authenticator.login("main")
 
 if authentication_status:
     st.success(f"Welcome {name}!")
