@@ -8,8 +8,8 @@ import pickle
 from pathlib import Path
 import streamlit_authenticator as stauth
 
-names = ['A_STEP', 'A_STEP']
-usernames = ['A_STEP', 'A_STEP']
+names = ['Tutor', 'Student']
+usernames = ['CTL', 'A_STEP']
 
 file_path = Path(__file__).parent / 'hashed_pw.pkl'
 with file_path.open('rb') as file:
