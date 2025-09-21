@@ -6,17 +6,23 @@ import pymupdf
 import re  
 from authlib.integrations.requests_client import OAuth2Session
 
+# Google login
+user = st.login("google_oidc")
 
-# Load Google OIDC credentials from Streamlit secrets
-google_client_id = st.secrets["google_oidc"]["client_id"]
-google_client_secret = st.secrets["google_oidc"]["client_secret"]
-google_discovery_url = st.secrets["google_oidc"]["discovery_url"]
+if user:
+    st.write(f"✅ Logged in as: {user.email}")
+    st.write(user)  # shows all available attributes from Google (name, picture, etc.)
 
-# Initialize OAuth session
-oauth = OAuth2Session(
-    client_id=google_client_id,
-    client_secret=google_client_secret,
-)
+    # Example: restrict based on domain
+    if user.email.endswith("@ufs4life.ac.za"):
+        st.success("Welcome Student 🎓")
+    elif user.email.endswith("@ufs.ac.za"):
+        st.success("Welcome Staff 👩‍🏫")
+    else:
+        st.error("Unauthorized: Please use a university email.")
+else:
+    st.warning("Please log in with your Google account.")
+
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
