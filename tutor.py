@@ -12,6 +12,9 @@ import streamlit_authenticator as stauth
 names = ['A_STEP', 'A_STEP']
 usernames = ['A_STEP', 'A_STEP']
 
+file_path = Path(__file__).parent / 'hashed_pw.pkl'
+with file_path.open('rb') as file:
+    pickle.load(file)
 
 
 # Load API key from Streamlit secrets
