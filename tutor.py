@@ -8,7 +8,7 @@ import re
 user = st.login("google")
 
 if user:
-    if user.email.endswith("@ufs4life.ac.za"):
+    if user.email.endswith("@gmail.com"):
         st.success(f"Welcome Student 🎓 {user.email}")
     else:
         st.error("Unauthorized: Please use a university email.")
