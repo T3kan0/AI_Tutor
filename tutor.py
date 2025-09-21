@@ -8,22 +8,12 @@ import re
 user = st.login("google")
 
 if user:
-    st.write("✅ Logged in!")
-    st.write(user)  # Inspect available attributes to see what you can use
-
-    # Example: restrict by email domain
-    if hasattr(user, "email"):
-        if user.email.endswith("@ufs4life.ac.za"):
-            st.success("Welcome Student 🎓")
-        elif user.email.endswith("@ufs.ac.za"):
-            st.success("Welcome Staff 👩‍🏫")
-        else:
-            st.error("Unauthorized: Please use a university email.")
+    if user.email.endswith("@ufs4life.ac.za"):
+        st.success(f"Welcome Student 🎓 {user.email}")
     else:
-        st.warning("No email attribute available in st.user. Inspect 'user' to see available fields.")
+        st.error("Unauthorized: Please use a university email.")
 else:
     st.warning("Please log in with your Google account.")
-
 
 
 # Load API key from Streamlit secrets
