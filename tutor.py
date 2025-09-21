@@ -8,6 +8,10 @@ import pickle
 from pathlib import Path
 import streamlit_authenticator as stauth
 
+# Load API key from Streamlit secrets
+api_key = st.secrets["groq"]["api_key"]
+# OpenAI 8000 tokens
+client = Groq(api_key=api_key)
 
 names = ['A_STEP', 'A_STEP']
 usernames = ['A_STEP', 'A_STEP']
@@ -24,12 +28,6 @@ credentials = {
 
 authenticator = stauth.Authenticate(credentials, "aitutor", "abcdef", 30)
 
-
-
-# Load API key from Streamlit secrets
-api_key = st.secrets["groq"]["api_key"]
-# OpenAI 8000 tokens
-client = Groq(api_key=api_key)
 
 template = """
 You are an Assistant Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at a South African university.
