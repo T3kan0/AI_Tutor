@@ -8,11 +8,6 @@ import pickle
 from pathlib import Path
 import streamlit_authenticator as stauth
 
-# Load API key from Streamlit secrets
-api_key = st.secrets["groq"]["api_key"]
-# OpenAI 8000 tokens
-client = Groq(api_key=api_key)
-
 names = ['A_STEP', 'A_STEP']
 usernames = ['A_STEP', 'A_STEP']
 
