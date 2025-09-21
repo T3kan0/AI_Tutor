@@ -5,6 +5,12 @@ import os
 import pymupdf
 import re  
 
+if not st.user.is_logged_in:
+    st.login("google")
+else:
+    st.write(f"Hello, {st.user.name}!")
+
+
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
