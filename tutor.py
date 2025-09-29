@@ -65,8 +65,8 @@ def handle_conversation():
 
     # Sidebar "New Chat" button
     col1, col2, col3 = st.sidebar.columns([1, 2, 1])
-    with col2:    
-        butt = st.sidebar.button("New Chat")   
+    #with col2:    
+    butt = st.sidebar.button("New Chat")   
 
     # Title
     st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
