@@ -4,7 +4,8 @@ from groq import Groq
 import os
 import pymupdf
 import re  
-
+from openai import OpenAI
+import textwrap
 
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
