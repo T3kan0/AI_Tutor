@@ -29,6 +29,16 @@ template = """
         Answer:
 """
 
+def extract_dtb_pdf(bucket, filename):
+    # Download file from Supabase
+    response = supabase.storage.from_(bucket).download(filename)
+    pdf_bytes = response
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+
+    text = ""
+    for page in doc:
+        text += page.get_text("text") + "\n"
+    return text
 
 def extract_text_from_pdf(pdf_file):
     """Extract text from an uploaded PDF file."""
