@@ -3,3 +3,4 @@ groq
 PyMuPDF>=1.22.5
 authlib>=1.3.2
 streamlit-authenticator==0.4.1
+OpenAI
