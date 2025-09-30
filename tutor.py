@@ -62,11 +62,26 @@ def handle_conversation():
         """,
         unsafe_allow_html=True
     )
+#### Extracting information from pdf files on 
 
-    # Sidebar "New Chat" button
-    col1, col2, col3 = st.sidebar.columns([1, 2, 1])
-    with col3:    
-            butt = st.sidebar.button("New Chat")   
+
+def extract_from_db_pdf(bucket, filename):
+    # Download file from Supabase
+    response = supabase.storage.from_(bucket).download(filename)
+    pdf_bytes = response
+    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+
+    text = ""
+    for page in doc:
+        text += page.get_text("text") + "\n"
+    return text
+
+
+
+
+
+        
+    butt = st.sidebar.button("New Chat")   
 
     # Title
     st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
