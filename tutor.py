@@ -10,7 +10,11 @@ import textwrap
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
 # OpenAI 8000 tokens
-client = Groq(api_key=api_key)
+#client = Groq(api_key=api_key)
+
+client = OpenAI(api_key=api_key])
+
+
 
 
 template = """
