@@ -68,6 +68,13 @@ def store_embeddings(bucket, filename, embeddings):
         })
     supabase.table("knowledge_base").insert(rows).execute()
 
+dtb_pdf_text = extract_dtb_pdf("A_STEP_intel", "A_STEP_Training_Manual.pdf")
+
+
+
+
+
+
 
 ## Extract information from the pdf files that are uploaded...
 
