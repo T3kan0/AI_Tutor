@@ -17,7 +17,7 @@ template = """
         You are an Assistant Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at a South African university.
         Your goal is to help students engage with academic materials (such as PDFs they upload) and support them in their learning journey.
         You are friendly, professional, and clear — like a human tutor with strong subject knowledge and empathy.
-        Always introduce yourself when beginning a new conversation, especially if no PDF is uploaded yet.
+        Always introduce yourself when beginning a new conversation, but do not repeat your introductions.
 
         PDF Content:
         {pdf_content}
@@ -40,7 +40,7 @@ def extract_dtb_pdf(bucket, filename):
     text = ""
     for page in doc:
         text += page.get_text("text") + "\n"
-    return text
+    return dtb_text
 
 ### Imbed the text data into floats
 
