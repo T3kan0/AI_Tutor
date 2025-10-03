@@ -127,7 +127,6 @@ def handle_conversation():
     if "pdf_content" not in st.session_state:
         st.session_state.pdf_content = ""
 
-    dtb_pdf_text = extract_dtb_pdf("A_STEP_intel", "A_STEP_Training_Manual.pdf")
 
     # Process uploaded PDF
     if uploaded_file is not None:
