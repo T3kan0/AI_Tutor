@@ -55,6 +55,19 @@ def create_embeddings(text, chunk_size=800):
         embeddings.append({"chunk": chunk, "vector": embedding.data[0].embedding})
     return embeddings
 
+#### store the embedded data in a vectorDB (postgres)
+
+def store_embeddings(bucket, filename, embeddings):
+    rows = []
+    for e in embeddings:
+        rows.append({
+            "bucket": bucket,
+            "filename": filename,
+            "chunk": e["chunk"],
+            "embedding": e["vector"]  # should be a list of floats
+        })
+    supabase.table("knowledge_base").insert(rows).execute()
+
 
 ## Extract information from the pdf files that are uploaded...
 
