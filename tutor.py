@@ -41,7 +41,9 @@ def extract_dtb_pdf(bucket, filename):
     for page in doc:
         text += page.get_text("text") + "\n"
     return text
-        
+
+### Imbed the text data into floats
+
 def create_embeddings(text, chunk_size=800):
     chunks = textwrap.wrap(text, chunk_size)
     embeddings = []
