@@ -109,7 +109,36 @@ else:
          
 
         # Title
-        st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
+        st.markdown("""
+        <style>
+        .header-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: linear-gradient(to right, #1E1A4D, #440E03); /* L→R */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            border: 3px solid #1C398E;  /* 👈 adds border */
+        }
+        .header-card h3 {
+            margin: 0;
+            font-weight: 700;
+            color: #E2E8F0;
+        }
+        .header-card h4 {
+            margin-top: 6px;
+            font-weight: 500;
+            color: #E2E8F0;
+        }
+        </style>
+        <div class="header-card">
+          <h3>A_STEP GenAI Assistant Tutors</h3>
+          <h4>A.T & T.E.</h4>
+        </div>
+        """, unsafe_allow_html=True)
+
+        
+        #st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
         st.markdown('---')
         st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
         st.sidebar.markdown('---')
