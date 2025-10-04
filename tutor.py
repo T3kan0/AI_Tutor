@@ -11,7 +11,7 @@ import textwrap
 # --- Login Section ---
 if not st.user.is_logged_in:
     st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
-    st.write("Please log in using your university Google account to access the AI Tutor.")
+    st.write("Please log in using your university Google account to access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
