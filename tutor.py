@@ -18,7 +18,7 @@ if not st.user.is_logged_in:
         st.stop()  # stops execution until user logs in
 else:
     # --- Logged-in Section ---
-    st.sidebar.success(f"Welcome, {st.user.name} ({st.user.email})!")
+    st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
     if st.sidebar.button("Logout"):
         st.logout()
         st.stop()
@@ -88,11 +88,11 @@ else:
         st.markdown('---')
         st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
         st.sidebar.markdown('---')
+        new_chat = st.sidebar.button("New Chat")   
 
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
-        new_chat = st.sidebar.button("New Chat")   
         if new_chat:
             st.session_state.messages = []  
             st.session_state.pdf_content = ""  
