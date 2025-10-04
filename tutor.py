@@ -132,8 +132,9 @@ else:
         }
         </style>
         <div class="header-card">
-          <h3>A_STEP GenAI Assistant Tutors</h3>
-          <h4>A.T & T.E.</h4>
+          <h3>A_STEP GenAI Assistant Tutor</h3>
+          <h5>Develop a new generation of tutors that can contribute to teaching and learning innovation
+            at the UFS.</h5>
         </div>
         """, unsafe_allow_html=True)
 
