@@ -8,14 +8,14 @@ from openai import OpenAI
 import textwrap
     
 
-sign_in = st.button('Sign-in')
-#if sign_in:
+
+
 # --- Login Section ---
 if not st.user.is_logged_in:
     st.markdown("<h2 style='text-align:center; color: maroon;'>A_STEP Assistant Tutor Login</h2>", unsafe_allow_html=True)
     st.write("Please log in using your university Google account to access the AI Tutor.")
     sign_in = st.button('Sign-in')
-        if sign_in:
+    if sign_in:
         st.login()
         st.stop()  # stops execution until user logs in
 else:
