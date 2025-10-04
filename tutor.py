@@ -139,9 +139,9 @@ else:
 
         
         #st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
-        st.markdown('---')
+        #st.markdown('---')
         st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
-        st.sidebar.markdown('---')
+        #st.sidebar.markdown('---')
         new_chat = st.sidebar.button("Clear or Start a New Chat!")   
 
         # Sidebar upload
