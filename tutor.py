@@ -125,7 +125,7 @@ else:
             font-weight: 700;
             color: #E2E8F0;
         }
-        .header-card h4 {
+        .header-card h8 {
             margin-top: 6px;
             font-weight: 500;
             color: #E2E8F0;
