@@ -15,12 +15,12 @@ if not st.user.is_logged_in:
     if sign_in:
         st.login()
         st.stop()  # stops execution until user logs in
-
-# --- Logged-in Section ---
-st.sidebar.success(f"Welcome, {st.user.name} ({st.user.email})!")
-if st.button("Logout"):
-    st.logout()
-    st.stop()
+else:
+    # --- Logged-in Section ---
+    st.sidebar.success(f"Welcome, {st.user.name} ({st.user.email})!")
+    if st.button("Logout"):
+        st.logout()
+        st.stop()
 
 
 
