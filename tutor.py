@@ -18,23 +18,29 @@ if not st.user.is_logged_in:
         "https://i.postimg.cc/dtqz6njz/log.png"
     ]
 
-    slideshow_placeholder = st.empty()  # Placeholder for images
+    if "slide_index" not in st.session_state:
+        st.session_state.slide_index = 0
+    
+    slideshow_placeholder = st.empty()
+    slideshow_placeholder.image(
+        image_urls[st.session_state.slide_index],
+        use_container_width=True
+    )
+  
+    # Update slideshow index for next run
+    st.session_state.slide_index += 1
+    if st.session_state.slide_index >= len(image_urls):
+        st.session_state.slide_index = 0
 
-    def run_slideshow():
-        while not st.session_state.get("logged_in", False):
-            for img_url in image_urls:
-                slideshow_placeholder.image(img_url, use_column_width=True)
-                time.sleep(3)  # Change every 3 seconds
-
-    # Run slideshow in background
-    run_slideshow()    
+    # Small delay so slideshow updates
+    time.sleep(2)
+    st.experimental_rerun()  
     
     st.write("Please log in using your university Google account to access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
-        st.session_state.logged_in = True
-        st.experimental_rerun()
+
 else:
     # --- Logged-in Section ---
     st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
