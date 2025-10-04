@@ -125,7 +125,7 @@ else:
             font-weight: 700;
             color: #E2E8F0;
         }
-        .header-card h4 {
+        .header-card h6 {
             margin-top: 6px;
             font-weight: 500;
             color: #E2E8F0;
@@ -133,8 +133,8 @@ else:
         </style>
         <div class="header-card">
           <h3>A_STEP GenAI Assistant Tutor</h3>
-          <h8>Developing a new generation of tutors that can contribute to teaching and learning innovation
-            at the UFS.</h8>
+          <h6>Developing a new generation of tutors that can contribute to teaching and learning innovation
+            at the UFS.</h6>
         </div>
         """, unsafe_allow_html=True)
 
