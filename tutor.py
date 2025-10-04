@@ -21,6 +21,9 @@ if not st.user.is_logged_in:
 
     if "slide_index" not in st.session_state:
         st.session_state.slide_index = 0
+
+    # Auto-refresh every 2 seconds
+    st_autorefresh(interval=2000, key="slideshow_refresh")
     
     slideshow_placeholder = st.empty()
     slideshow_placeholder.image(
@@ -32,10 +35,6 @@ if not st.user.is_logged_in:
     st.session_state.slide_index += 1
     if st.session_state.slide_index >= len(image_urls):
         st.session_state.slide_index = 0
-
-    # Small delay so slideshow updates
-    time.sleep(2)
-    st.experimental_rerun()  
     
     st.write("Please log in using your university Google account to access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
