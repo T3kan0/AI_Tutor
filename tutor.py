@@ -14,7 +14,7 @@ if not st.user.is_logged_in:
     st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
     # --- Image Auto-Slideshow ---
     image_urls = [
-        "https://i.postimg.cc/dtqz6njz/log.png",
+        "https://i.postimg.cc/BQsN9j4F/students3.jpg",
         "https://i.postimg.cc/dtqz6njz/log.png",
         "https://i.postimg.cc/dtqz6njz/log.png"
     ]
