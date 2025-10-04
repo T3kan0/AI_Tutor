@@ -7,6 +7,22 @@ import re
 from openai import OpenAI
 import textwrap
 
+# --- Login Section ---
+if not st.user.is_logged_in:
+    st.markdown("<h2 style='text-align:center; color: maroon;'>A_STEP Assistant Tutor Login</h2>", unsafe_allow_html=True)
+    st.write("Please log in using your university Google account to access the AI Tutor.")
+    st.login(button_text="🔐 Login with Google")
+    st.stop()  # stops execution until user logs in
+
+# --- Logged-in Section ---
+st.sidebar.success(f"Welcome, {st.user.name} ({st.user.email})!")
+if st.button("Logout"):
+    st.logout()
+    st.stop()
+
+
+
+
 # Load API key from Streamlit secrets
 api_key = st.secrets["groq"]["api_key"]
 # OpenAI 8000 tokens
