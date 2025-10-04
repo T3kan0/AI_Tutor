@@ -88,7 +88,7 @@ else:
         st.markdown('---')
         st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
         st.sidebar.markdown('---')
-        new_chat = st.sidebar.button("Start a New Chat!")   
+        new_chat = st.sidebar.button("Clear/Start a New Chat!")   
 
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
