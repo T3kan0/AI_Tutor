@@ -19,7 +19,7 @@ if not st.user.is_logged_in:
 else:
     # --- Logged-in Section ---
     st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
-    if st.sidebar.button("Sign-Out"):
+    if st.sidebar.button("When Completed, Sign-Out Here!"):
         st.logout()
         st.stop()
 
