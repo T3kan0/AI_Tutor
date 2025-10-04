@@ -16,7 +16,7 @@ if not st.user.is_logged_in:
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
         "https://i.postimg.cc/4xY9rG7H/students2.jpg",
-        "https://i.postimg.cc/dtqz6njz/log.png"
+        "https://i.postimg.cc/bJgrZVSk/students1.jpg"
     ]
 
     if "slide_index" not in st.session_state:
