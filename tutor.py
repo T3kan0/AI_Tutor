@@ -15,7 +15,7 @@ if not st.user.is_logged_in:
     # --- Image Auto-Slideshow ---
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
-        "https://i.postimg.cc/dtqz6njz/log.png",
+        "https://i.postimg.cc/4xY9rG7H/students2.jpg",
         "https://i.postimg.cc/dtqz6njz/log.png"
     ]
 
