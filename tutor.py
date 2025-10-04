@@ -6,7 +6,7 @@ import pymupdf
 import re  
 from openai import OpenAI
 import textwrap
-
+import time
 
 # --- Login Section ---
 if not st.user.is_logged_in:
