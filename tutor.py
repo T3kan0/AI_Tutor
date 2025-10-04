@@ -11,11 +11,30 @@ import time
 # --- Login Section ---
 if not st.user.is_logged_in:
     st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
+    # --- Image Auto-Slideshow ---
+    image_urls = [
+        "https://i.postimg.cc/dtqz6njz/log.png",
+        "https://i.postimg.cc/dtqz6njz/log.png",
+        "https://i.postimg.cc/dtqz6njz/log.png"
+    ]
+
+    slideshow_placeholder = st.empty()  # Placeholder for images
+
+    def run_slideshow():
+        while not st.session_state.get("logged_in", False):
+            for img_url in image_urls:
+                slideshow_placeholder.image(img_url, use_column_width=True)
+                time.sleep(3)  # Change every 3 seconds
+
+    # Run slideshow in background
+    run_slideshow()    
+    
     st.write("Please log in using your university Google account to access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
-        st.stop()  # stops execution until user logs in
+        st.session_state.logged_in = True
+        st.experimental_rerun()
 else:
     # --- Logged-in Section ---
     st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
