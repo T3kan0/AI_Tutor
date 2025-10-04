@@ -30,44 +30,6 @@ template = """
         Answer:
 """
 
-## Extract information from the pdf files on the database...
-
-def extract_dtb_pdf(bucket, filename):
-    # Download file from Supabase
-    response = supabase.storage.from_(bucket).download(filename)
-    pdf_bytes = response
-    doc = fitz.open(stream=pdf_bytes, filetype="pdf")
-    text = ""
-    for page in doc:
-        text += page.get_text("text") + "\n"
-    return dtb_text
-
-### Imbed the text data into floats
-
-def create_embeddings(text, chunk_size=800):
-    chunks = textwrap.wrap(text, chunk_size)
-    embeddings = []
-    for chunk in chunks:
-        embedding = client.embeddings.create(
-            model="text-embedding-3-small",
-            input=chunk
-        )
-        embeddings.append({"chunk": chunk, "vector": embedding.data[0].embedding})
-    return embeddings
-
-#### store the embedded data in a vectorDB (postgres)
-
-def store_embeddings(bucket, filename, embeddings):
-    rows = []
-    for e in embeddings:
-        rows.append({
-            "bucket": bucket,
-            "filename": filename,
-            "chunk": e["chunk"],
-            "embedding": e["vector"]  # should be a list of floats
-        })
-    supabase.table("knowledge_base").insert(rows).execute()
-
 
 ## Extract information from the pdf files that are uploaded...
 
