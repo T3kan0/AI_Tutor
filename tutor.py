@@ -7,6 +7,7 @@ import re
 from openai import OpenAI
 import textwrap
 import time
+from streamlit_autorefresh import st_autorefresh
 
 # --- Login Section ---
 if not st.user.is_logged_in:
