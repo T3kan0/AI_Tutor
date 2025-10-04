@@ -6,8 +6,6 @@ import pymupdf
 import re  
 from openai import OpenAI
 import textwrap
-    
-
 
 
 # --- Login Section ---
@@ -21,7 +19,7 @@ if not st.user.is_logged_in:
 else:
     # --- Logged-in Section ---
     st.sidebar.success(f"Welcome, {st.user.name} ({st.user.email})!")
-    if st.button("Logout"):
+    if st.sidebar.button("Logout"):
         st.logout()
         st.stop()
 
