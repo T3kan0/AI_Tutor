@@ -23,9 +23,6 @@ else:
         st.logout()
         st.stop()
 
-
-
-
     # Load API key from Streamlit secrets
     api_key = st.secrets["groq"]["api_key"]
     # OpenAI 8000 tokens
@@ -84,8 +81,7 @@ else:
             """,
             unsafe_allow_html=True
         )
-        
-        butt = st.sidebar.button("New Chat")   
+         
 
         # Title
         st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
@@ -96,8 +92,8 @@ else:
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
-
-        if butt:
+        new_chat = st.sidebar.button("New Chat")   
+        if new_chat:
             st.session_state.messages = []  
             st.session_state.pdf_content = ""  
             st.success("New chat started! Upload a new PDF if needed.")
