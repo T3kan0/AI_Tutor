@@ -23,7 +23,7 @@ if not st.user.is_logged_in:
         st.session_state.slide_index = 0
 
     # Auto-refresh every 2 seconds
-    st_autorefresh(interval=2000, key="slideshow_refresh")
+    st_autorefresh(interval=5000, key="slideshow_refresh")
     
     slideshow_placeholder = st.empty()
     slideshow_placeholder.image(
