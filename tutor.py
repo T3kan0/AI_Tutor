@@ -85,8 +85,9 @@ if not st.user.is_logged_in:
     st.session_state.slide_index += 1
     if st.session_state.slide_index >= len(image_urls):
         st.session_state.slide_index = 0
-    
-    st.write("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
+        
+    st.info("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
+    #st.write("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
