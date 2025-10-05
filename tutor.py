@@ -91,7 +91,7 @@ if not st.user.is_logged_in:
         <div style="background-color: #1a1a1a; padding: 10px; border-radius: 8px;border: 2px solid white;">
             <p style="color: white; font-size: 16px; text-align: center;">
                 Please sign in using your University of the Free State Google Student Account (ufs4life) 
-                to access the GenAI Assistant Tutor.
+                to access the GenAI Assistant Tutor 🤓.
             </p>
         </div>
         """,
