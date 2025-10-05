@@ -97,9 +97,8 @@ if not st.user.is_logged_in:
         """,
         unsafe_allow_html=True
     )
-    col1, col2, col3 = st.columns(3)
-    with col2:
-        sign_in = st.button('Sign-in')
+    col1, col2, col3 = st.columns(3, vertical_alignment="bottom")
+    col2.sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
 
