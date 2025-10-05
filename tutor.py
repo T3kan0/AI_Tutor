@@ -41,7 +41,6 @@ if not st.user.is_logged_in:
     </div>
     """, unsafe_allow_html=True)    
     
-    #st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
     # --- Image Auto-Slideshow ---
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
@@ -66,7 +65,7 @@ if not st.user.is_logged_in:
     if st.session_state.slide_index >= len(image_urls):
         st.session_state.slide_index = 0
     
-    st.write("Please log in using your university Google account to access the GenAI Assistant Tutor.")
+    st.write("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
