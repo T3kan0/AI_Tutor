@@ -11,7 +11,28 @@ from streamlit_autorefresh import st_autorefresh
 
 # --- Login Section ---
 if not st.user.is_logged_in:
-    
+    # Center the "New Chat" button using HTML and CSS
+    st.markdown(
+        """
+        <div style="display: flex; justify-content: center;">
+            <style>
+                .stButton>button {
+                    background-color: maroon;
+                    color: white;
+                    font-size: 16px;
+                    padding: 10px 24px;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                }
+                .stButton>button:hover {
+                    background-color: #45a049;
+                }
+            </style>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     # Title
     st.markdown("""
     <style>
