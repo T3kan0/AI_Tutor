@@ -87,7 +87,7 @@ if not st.user.is_logged_in:
         st.session_state.slide_index = 0
         
     #st.info("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
-    st.success(":white[Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.]")
+    st.success("white:[Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.]")
     #st.write("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
     sign_in = st.button('Sign-in')
     if sign_in:
