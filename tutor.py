@@ -86,9 +86,6 @@ if not st.user.is_logged_in:
     if st.session_state.slide_index >= len(image_urls):
         st.session_state.slide_index = 0
         
-    #st.info("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
-    #st.success("white:[Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.]")
-    #st.write("Please Sign-in in using your University of the Free State Google Student Account (ufs4life) to Access the GenAI Assistant Tutor.")
     st.markdown(
         """
         <div style="background-color: #1a1a1a; padding: 10px; border-radius: 8px;">
@@ -100,8 +97,9 @@ if not st.user.is_logged_in:
         """,
         unsafe_allow_html=True
     )
-
-    sign_in = st.button('Sign-in')
+    col1, clo2, col3 = st.columns(3)
+    with col2:
+        sign_in = st.button('Sign-in')
     if sign_in:
         st.login()
 
