@@ -11,7 +11,37 @@ from streamlit_autorefresh import st_autorefresh
 
 # --- Login Section ---
 if not st.user.is_logged_in:
-    st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
+    
+    # Title
+    st.markdown("""
+    <style>
+    .header-card {
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #1E1A4D, #440E03); /* L→R */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        border: 3px solid #1C398E;  /* 👈 adds border */
+    }
+    .header-card h3 {
+        margin: 0;
+        font-weight: 700;
+        color: #E2E8F0;
+    }
+    .header-card h6 {
+        margin-top: 6px;
+        font-weight: 500;
+        color: #E2E8F0;
+    }
+    </style>
+    <div class="header-card">
+        <h3>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h3>
+        <h6>A UFS student driven academic support and development initiative</h6>
+    </div>
+    """, unsafe_allow_html=True)    
+    
+    #st.markdown("<h2 style='text-align:center; color: maroon;'>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h2>", unsafe_allow_html=True)
     # --- Image Auto-Slideshow ---
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
