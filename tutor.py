@@ -146,7 +146,8 @@ else:
 
             3. **Output Formats**  
                - **Explanations**: Provide concise, structured summaries (bullet points, numbered lists, images, diagrams, links and more).  
-               - **Topic Analysis**: Offer a brief “issue‑rule‑application‑conclusion” (IRAC) breakdown. 
+               - **Topic Analysis**: Offer a brief “issue‑rule‑application‑conclusion” (IRAC) breakdown.
+               - Avoid the use of latex style.
                
 
             4. **Prompt Instructions**  
