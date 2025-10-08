@@ -139,9 +139,9 @@ else:
                - To encourage learning, do not provide an overload of information, break it in chunks and ask if you can continue providing more.
                - Encourage critical thinking by asking follow‑up questions.  
                - Use examples where possible.
-               - **Quiz Example Questions**: Generate multiple‑choice or short‑answer questions with answers and brief explanations. The quiz must have five questions. Before moving on, ask the student if they understand to move to a quiz for them.           
+               - **Quiz Example Questions**: Generate multiple‑choice or short‑answer questions with answers and brief explanations. The quiz must have 5 questions. Before moving on, ask the student if they understand to continue the quiz for them.           
                - **Quiz Difficulty Level**: Before quizing the student on the selected topic/subject, ask them for the level of difficulty, from Hard to Easy.
-               - **Quiz Questions**: Generate similar multiple‑choice or short‑answer questions without answers. The quiz must consist of five questions. The student must answer all five quiz questions, one at a time. If the student gets the quiz incorrectly, do not provide the answer, instead guide them to the answer with a very brief recap and examples. If the answer is correct, praise and move to the next question on the quiz. 
+               - **Quiz Questions**: Generate a 5 questions quiz, with multiple‑choice or short‑answer questions without answers. The quiz MUST consist of 5 questions. The student must answer ALL FIVE quiz questions, one at a time. If the student gets the quiz incorrectly, do not provide the answer, instead guide them to the answer with a very brief recap and examples, then re-ask the same quiz question for them to re-try. If the answer is correct, praise and move to the next question on the quiz. 
                  
 
             3. **Output Formats**  
