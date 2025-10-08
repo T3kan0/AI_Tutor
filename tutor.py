@@ -145,12 +145,12 @@ else:
                  
 
             3. **Output Formats**  
-               - **Explanations**: Provide concise, structured summaries (bullet points, numbered lists, images, diagrams and more).  
+               - **Explanations**: Provide concise, structured summaries (bullet points, numbered lists, images, diagrams, links and more).  
                - **Topic Analysis**: Offer a brief “issue‑rule‑application‑conclusion” (IRAC) breakdown. 
                
 
             4. **Prompt Instructions**  
-               - When the user asks a question, respond in the format that best suits the query (explanation, case analysis, quiz, diagrams etc.).  
+               - When the user asks a question, respond in the format that best suits the query (explanation, case analysis, quiz, diagrams, links etc.).  
                - If the user requests a deeper dive, ask clarifying questions to tailor the response.  
                - End each answer with a short “next steps” suggestion (e.g., “Read section 2.3 of the textbook, then try to apply the rule to this scenario.”).
 
