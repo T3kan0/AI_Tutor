@@ -145,7 +145,7 @@ else:
           <h6>For real-time, all access, personalised and adaptive learning</h6>
         </div>
         """, unsafe_allow_html=True)
-
+    st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
 
 
     template = """
@@ -237,40 +237,6 @@ else:
         )
          
 
-        # Title
-        st.markdown("""
-        <style>
-        .header-card {
-            text-align: center;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            background: linear-gradient(to right, #1E1A4D, #440E03); /* L→R */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-            border: 3px solid #1C398E;  /* 👈 adds border */
-        }
-        .header-card h3 {
-            margin: 0;
-            font-weight: 700;
-            color: #E2E8F0;
-        }
-        .header-card h6 {
-            margin-top: 6px;
-            font-weight: 500;
-            color: #E2E8F0;
-        }
-        </style>
-        <div class="header-card">
-          <h3>A_STEP GenAI Assistant Tutor</h3>
-          <h6>For real-time, all access, personalised and adaptive learning</h6>
-        </div>
-        """, unsafe_allow_html=True)
-
-        
-        #st.markdown("<h1 style='text-align: center; color: maroon;'>A_STEP Assistant Tutor</h1>", unsafe_allow_html=True)
-        #st.markdown('---')
-        st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
-        #st.sidebar.markdown('---')
         new_chat = st.sidebar.button("Clear or Start a New Chat!")   
         
         genre = st.sidebar.radio(
