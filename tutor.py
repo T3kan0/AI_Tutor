@@ -245,10 +245,10 @@ else:
         
         genre = st.sidebar.radio(
             "What's your favorite movie genre",
-            [":rainbow[Tutor Session Mode]", "***Material Engagement***"
+            [":rainbow[Tutor Session Mode]", "***Material Engagement***"]
             captions=[
                 "Engage with the GenAI tutor through CHAT",
-                "Material Assistance with GenAI"
+                "Material Assistance with GenAI",
             ],
         )
         # Sidebar upload
