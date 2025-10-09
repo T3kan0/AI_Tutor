@@ -244,7 +244,7 @@ else:
         new_chat = st.sidebar.button("Clear or Start a New Chat!")   
         
         genre = st.sidebar.radio(
-            "What's your favorite movie genre",
+            "Select your Preferred Learning Mode",
             [":rainbow[Tutor Session Mode]", "***Material Engagement***"],
             captions=[
                 "Engagement with a GenAI tutor",
