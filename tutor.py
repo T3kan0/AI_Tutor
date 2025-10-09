@@ -247,7 +247,7 @@ else:
             "What's your favorite movie genre",
             [":rainbow[Tutor Session Mode]", "***Material Engagement***"],
             captions=[
-                "Engage with the GenAI tutor through CHAT",
+                "Engagement with a GenAI tutor",
                 "Material Assistance with GenAI",
             ],
         )
