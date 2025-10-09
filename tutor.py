@@ -408,6 +408,28 @@ else:
             # User input
             user_input = st.chat_input("Ask something...")        
 
+            if user_input:
+                # Append user message
+                st.session_state.messages.append({"role": "user", "content": user_input})
+                with st.chat_message("user"):
+                    st.write(user_input)
+
+                # Prepare conversation context
+                context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
+
+                # Format prompt
+                prompt_text = template.format(context=context, question=user_input)
+                
+                # Generate tutor response (Groq model)
+                with st.chat_message("assistant"):
+                    with st.spinner("Thinking... 💭"):
+                        groq_response = client.chat.completions.create(
+                            model="openai/gpt-oss-20b",
+                            messages=[{"role": "user", "content": prompt_text}],
+                            temperature=0.7,
+                            max_tokens=2000
+                        )
+  
                 
         
         # Run the app
