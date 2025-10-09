@@ -9,7 +9,7 @@ import textwrap
 import time
 from streamlit_autorefresh import st_autorefresh
 
-# --- Login Section ---
+# --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if not st.user.is_logged_in:
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
@@ -111,11 +111,41 @@ else:
     if st.sidebar.button("Lesson Over? Sign-Out Here!"):
         st.logout()
         st.stop()
-
+------ GenAI API ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Load API key from Streamlit secrets
     api_key = st.secrets["groq"]["api_key"]
     # OpenAI 8000 tokens
     client = Groq(api_key=api_key)
+----- Application Layout ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # Title
+    st.markdown("""
+        <style>
+        .header-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background: linear-gradient(to right, #1E1A4D, #440E03); /* L→R */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            border: 3px solid #1C398E;  /* 👈 adds border */
+        }
+        .header-card h3 {
+            margin: 0;
+            font-weight: 700;
+            color: #E2E8F0;
+        }
+        .header-card h6 {
+            margin-top: 6px;
+            font-weight: 500;
+            color: #E2E8F0;
+        }
+        </style>
+        <div class="header-card">
+          <h3>A_STEP GenAI Assistant Tutor</h3>
+          <h6>For real-time, all access, personalised and adaptive learning</h6>
+        </div>
+        """, unsafe_allow_html=True)
+
 
 
     template = """
