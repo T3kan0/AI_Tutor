@@ -393,9 +393,19 @@ else:
             if new_chat:
                 st.session_state.messages = []  
                 st.success("New chat started!")
+
+            # Initialize session state
+            if "messages" not in st.session_state:
+                st.session_state.messages = []
+
+            # Display chat history
+            for message in st.session_state.messages:
+                with st.chat_message(message["role"]):
+                    st.write(message["content"])
         
-        # User input
-        user_input = st.chat_input("Ask something...")        
+        
+            # User input
+            user_input = st.chat_input("Ask something...")        
 
 
         
