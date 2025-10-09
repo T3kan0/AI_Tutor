@@ -389,7 +389,9 @@ else:
 
                 Answer:
         """
-
+        if new_chat:
+            st.session_state.messages = []  
+            st.success("New chat started!")
         
         # User input
         user_input = st.chat_input("Ask something...")        
