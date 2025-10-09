@@ -242,21 +242,19 @@ else:
         st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
         #st.sidebar.markdown('---')
         new_chat = st.sidebar.button("Clear or Start a New Chat!")   
-
+        
+        genre = st.sidebar.radio(
+            "What's your favorite movie genre",
+            [":rainbow[Tutor Session Mode]", "***Material Engagement***"
+            captions=[
+                "Engage with the GenAI tutor through CHAT",
+                "Material Assistance with GenAI"
+            ],
+        )
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
         
-        genre = st.sidebar.radio(
-            "What's your favorite movie genre",
-            [":rainbow[Comedy]", "***Drama***", "Documentary :movie_camera:"],
-            captions=[
-                "Laugh out loud.",
-                "Get the popcorn.",
-                "Never stop learning.",
-            ],
-        )
-   
         if new_chat:
             st.session_state.messages = []  
             st.session_state.pdf_content = ""  
