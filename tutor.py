@@ -430,11 +430,24 @@ else:
                             max_tokens=2000
                         )
   
+                        # Extract and clean response
+                        raw_text = groq_response.choices[0].message.content
+                        response = re.sub(r"<think>.*?</think>", "", raw_text, flags=re.DOTALL).strip()
+
+                        st.write(response)
                 
+                # Save assistant message
+                st.session_state.messages.append({"role": "assistant", "content": response})
+
+
+        # --- Run the app ---
+        if __name__ == "__main__":
+            #client = Groq(api_key=st.secrets["GROQ_API_KEY"])  # or your own auth
+            handle_conversation(client)
         
         # Run the app
-        if __name__ == "__main__":
-            handle_conversation()
+        #if __name__ == "__main__":
+            #handle_conversation()
 
 
 
