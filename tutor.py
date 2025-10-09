@@ -146,6 +146,31 @@ else:
         </div>
         """, unsafe_allow_html=True)
     st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
+
+
+    # Center the "New Chat" button using HTML and CSS
+    st.markdown(
+            """
+            <div style="display: flex; justify-content: center;">
+                <style>
+                    .stButton>button {
+                        background-color: maroon;
+                        color: white;
+                        font-size: 16px;
+                        padding: 10px 24px;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                    }
+                    .stButton>button:hover {
+                        background-color: #45a049;
+                    }
+                </style>
+            </div>
+            """,
+            unsafe_allow_html=True
+    )
+
     
     new_chat = st.sidebar.button("Clear or Start a New Chat!")   
         
@@ -223,32 +248,7 @@ else:
 
 
     def handle_conversation():
-        # Center the "New Chat" button using HTML and CSS
-        st.markdown(
-            """
-            <div style="display: flex; justify-content: center;">
-                <style>
-                    .stButton>button {
-                        background-color: maroon;
-                        color: white;
-                        font-size: 16px;
-                        padding: 10px 24px;
-                        border: none;
-                        border-radius: 8px;
-                        cursor: pointer;
-                    }
-                    .stButton>button:hover {
-                        background-color: #45a049;
-                    }
-                </style>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-         
-
-        #new_chat = st.sidebar.button("Clear or Start a New Chat!")   
-        
+             
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
