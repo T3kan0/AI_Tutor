@@ -406,7 +406,9 @@ else:
         
             # User input
             user_input = st.chat_input("Ask something...")        
-
+            if user_input:
+                # Add user message to chat history
+                st.session_state.messages.append({"role": "user", "content": user_input})
 
         
         # Run the app
