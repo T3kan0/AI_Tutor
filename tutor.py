@@ -146,6 +146,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
     st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
+    
     new_chat = st.sidebar.button("Clear or Start a New Chat!")   
         
     genre = st.sidebar.radio(
