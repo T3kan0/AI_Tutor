@@ -389,14 +389,19 @@ else:
 
                 Answer:
         """
-        if new_chat:
-            st.session_state.messages = []  
-            st.success("New chat started!")
+        def handle_conversation():
+            if new_chat:
+                st.session_state.messages = []  
+                st.success("New chat started!")
         
         # User input
         user_input = st.chat_input("Ask something...")        
 
 
+        
+        # Run the app
+        if __name__ == "__main__":
+            handle_conversation()
 
 
 
