@@ -246,6 +246,17 @@ else:
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
+        
+        genre = st.radio(
+            "What's your favorite movie genre",
+            [":rainbow[Comedy]", "***Drama***", "Documentary :movie_camera:"],
+            captions=[
+                "Laugh out loud.",
+                "Get the popcorn.",
+                "Never stop learning.",
+            ],
+        )
+   
         if new_chat:
             st.session_state.messages = []  
             st.session_state.pdf_content = ""  
