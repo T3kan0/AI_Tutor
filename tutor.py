@@ -146,7 +146,16 @@ else:
         </div>
         """, unsafe_allow_html=True)
     st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
-
+    new_chat = st.sidebar.button("Clear or Start a New Chat!")   
+        
+    genre = st.sidebar.radio(
+            "Select your Preferred Learning Mode",
+            [":rainbow[Tutor Session Mode]", "***Material Engagement***"],
+            captions=[
+                "Engagement with a GenAI tutor",
+                "Material Assistance with GenAI",
+            ],
+    )
 
     template = """
             Act as an Assistant gamified Tutor for the Academic Student Excellence and Tutorial Programme (A_STEP) at the University of the Free State (UFS), in South Africa -
@@ -237,16 +246,8 @@ else:
         )
          
 
-        new_chat = st.sidebar.button("Clear or Start a New Chat!")   
+        #new_chat = st.sidebar.button("Clear or Start a New Chat!")   
         
-        genre = st.sidebar.radio(
-            "Select your Preferred Learning Mode",
-            [":rainbow[Tutor Session Mode]", "***Material Engagement***"],
-            captions=[
-                "Engagement with a GenAI tutor",
-                "Material Assistance with GenAI",
-            ],
-        )
         # Sidebar upload
         st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
         uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
