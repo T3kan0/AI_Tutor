@@ -409,7 +409,17 @@ else:
             if user_input:
                 # Add user message to chat history
                 st.session_state.messages.append({"role": "user", "content": user_input})
-
+                
+                # Only keep last 5 messages to reduce token count
+                context_messages = st.session_state.messages[-5:]
+                context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in context_messages])
+                
+                # Generate response
+                prompt_text = template.format(
+                            context=context,
+                            question=user_input
+                            )
+        
         
         # Run the app
         if __name__ == "__main__":
