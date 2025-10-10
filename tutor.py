@@ -326,7 +326,7 @@ else:
                 # Generate response
                 if not st.session_state.pdf_content:
                     response = (
-                        "Hello. I'm your A_STEP Assistant tutor. "
+                        "Hi there 👋. Welcome to the ***Material Engagement*** Tutorial Session. I'm your A_STEP Assistant tutor.🤖"
                         "I see that no PDF document has been uploaded yet. "
                         "Please upload a PDF document and we can proceed with your questions about it, otherwise you can switch to the ***Tutor Session Mode*** to Chat with a GenAI Tutor."
                         )
