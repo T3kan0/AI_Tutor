@@ -314,7 +314,9 @@ else:
             if user_input:
                 # Add user message to chat history
                 st.session_state.messages.append({"role": "user", "content": user_input})
-
+                with st.chat_message("user"):
+                    st.write(user_input)
+                
                 # Create context (conversation history)
                 #context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
                 # Only keep last 5 messages to reduce token count
