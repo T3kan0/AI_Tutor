@@ -326,7 +326,7 @@ else:
                     response = (
                         "Hello. I'm your A_STEP Assistant tutor. "
                         "I see that no PDF document has been uploaded yet. "
-                        "Please upload a PDF document and we can proceed with your questions about it."
+                        "Please upload a PDF document and we can proceed with your questions about it, or switch to the Tutor Session Mode to Chat with a GenAI Tutor."
                         )
                 else:
                     # Truncate PDF text to avoid token overflow
