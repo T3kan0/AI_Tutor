@@ -224,6 +224,7 @@ else:
 
             4. **Working with Uploaded Materials (PDFs)**
                - Use `{pdf_content}` as reference material for context.
+               - Avoid engaging with topics or context outside the pdf_content material. Steer the student back to the uploaded context.
                - Summarize or explain concepts found in the uploaded content.
                - Help the student identify key themes, definitions, or examples.
                - Provide structure (e.g., outlines, key takeaways, or concept maps) that aids understanding.
