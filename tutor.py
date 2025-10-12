@@ -455,7 +455,7 @@ else:
                 # Format prompt
                 prompt_text = template.format(context=context, question=user_input)
                 
-                # Generate tutor response (Groq model)
+                # Generate tutor response (OpenAI Model)
                 with st.chat_message("assistant"):
                     with st.spinner("Thinking... 💭"):
                         groq_response = client.chat.completions.create(
