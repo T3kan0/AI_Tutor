@@ -439,6 +439,10 @@ else:
         # Convert to pandas DataFrame
         df_rag = pd.DataFrame(rag_context.data)
 
+        # Convert string embeddings to list of floats
+        df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
+
+
         def handle_conversation():
             if new_chat:
                 st.session_state.messages = []  
