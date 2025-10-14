@@ -482,6 +482,9 @@ else:
                 # Embed the user query
                 query_vec = vectorizer.transform([user_input]).toarray()[0]  # same TF-IDF space
                 
+                # Compute similarity against stored embeddings
+                stored_embeddings = np.stack(df_rag['embedding'].values)  # already in app
+                similarities = cosine_similarity([query_vec], stored_embeddings)[0]
                 
                 # Prepare conversation context
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
