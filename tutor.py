@@ -14,6 +14,7 @@ from supabase import create_client, Client
 import ast
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import joblib
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if not st.user.is_logged_in:
