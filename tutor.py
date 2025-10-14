@@ -477,6 +477,7 @@ else:
                 with st.chat_message("user"):
                     st.write(user_input)
 
+                vectorizer = TfidfVectorizer(stop_words='english')
 
                 
                 
