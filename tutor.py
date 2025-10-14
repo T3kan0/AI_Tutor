@@ -7,6 +7,8 @@ import re
 from openai import OpenAI
 import textwrap
 import time
+import pandas as pd
+import numpy as np
 from streamlit_autorefresh import st_autorefresh
 from supabase import create_client, Client
 
