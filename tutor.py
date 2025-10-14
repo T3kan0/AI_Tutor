@@ -433,7 +433,7 @@ else:
                - Do not repeat your introduction once the conversation has begun.
 
         **Relevant Course Data:**
-        {rag_context}
+        {rag_text}
 
         Conversation History:
         {context}
