@@ -445,7 +445,7 @@ else:
 
             # Convert string embeddings to list of floats
             df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
-        return df_rag
+            return df_rag
         
         df_rag = load_rag_data()
 
