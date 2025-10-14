@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 from streamlit_autorefresh import st_autorefresh
 from supabase import create_client, Client
+import ast
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if not st.user.is_logged_in:
