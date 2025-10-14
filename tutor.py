@@ -487,6 +487,9 @@ else:
                 # Compute similarity against stored embeddings
                 stored_embeddings = np.stack(df_rag['embedding'].values)  # already in app
                 similarities = cosine_similarity([query_vec], stored_embeddings)[0]
+
+                top_idx = similarities.argsort()[::-1][:5]
+                top_courses = df_rag.iloc[top_idx]                
                 
                 # Prepare conversation context
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
