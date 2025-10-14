@@ -6,4 +6,4 @@ streamlit-authenticator==0.4.1
 OpenAI
 streamlit_autorefresh
 supabase
-scikit-learn==1.7.1
+scikit-learn==1.7.0
