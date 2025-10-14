@@ -116,6 +116,11 @@ else:
     api_key = st.secrets["groq"]["api_key"]
     # OpenAI 8000 tokens
     client = Groq(api_key=api_key)
+    SUPABASE_URL1 = st.secrets["vectors"]["SUPABASE_URL1"]
+    SUPABASE_KEY1 = st.secrets["vectors"]["SUPABASE_KEY1"]
+
+    # Initialize Supabase client
+    supabase1: Client = create_client(SUPABASE_URL1, SUPABASE_KEY1)
 # ----- Application Layout ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Title
     st.markdown("""
