@@ -433,6 +433,8 @@ else:
         """
         # Fetch all data from your table
         rag_context = supabase.table("course_embeddings").select("*").execute()
+        # Convert to pandas DataFrame
+        df_rag = pd.DataFrame(rag_context.data)
 
         def handle_conversation():
             if new_chat:
