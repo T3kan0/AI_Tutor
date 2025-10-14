@@ -448,7 +448,10 @@ else:
             return df_rag
         
         df_rag = load_rag_data()
-
+        # Quick sanity check preview
+        st.write("✅ Loaded RAG data:", df_rag.shape)
+        st.dataframe(df_rag.head())
+        
         def handle_conversation():
             if new_chat:
                 st.session_state.messages = []  
