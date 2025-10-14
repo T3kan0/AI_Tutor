@@ -477,6 +477,13 @@ else:
                 with st.chat_message("user"):
                     st.write(user_input)
 
+                # --- Embed the user query and retrieve relevant modules ---
+                query_vec = vectorizer.transform([user_input])  # Use the same TF-IDF vectorizer
+                similarities = cosine_similarity(query_vec, tfidf_matrix)  # Compare with corpus
+                top_idx = similarities.argsort()[0][-3:][::-1]  # Top 3 most relevant modules
+
+                
+                
                 # Prepare conversation context
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
 
