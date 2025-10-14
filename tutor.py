@@ -433,7 +433,7 @@ else:
                - Do not repeat your introduction once the conversation has begun.
 
         **Relevant Course Data:**
-        {rag_text}
+        {rag_context}
 
         Conversation History:
         {context}
@@ -503,7 +503,7 @@ else:
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
 
                 # Extend your prompt with RAG context
-                prompt_text = template.format(context=context, question=user_input) + "\n\nRelevant courses:\n" + rag_text
+                prompt_text = template.format(context=context, question=user_input, rag_context=rag_text) + "\n\nRelevant courses:\n" + rag_text
                 
                 # Format prompt
                 #prompt_text = template.format(context=context, question=user_input)
