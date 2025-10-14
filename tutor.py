@@ -12,6 +12,8 @@ import numpy as np
 from streamlit_autorefresh import st_autorefresh
 from supabase import create_client, Client
 import ast
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if not st.user.is_logged_in:
