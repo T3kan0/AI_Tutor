@@ -490,12 +490,17 @@ else:
 
                 top_idx = similarities.argsort()[::-1][:5]
                 top_courses = df_rag.iloc[top_idx]                
+                # Combine top course descriptions as RAG context
+                rag_text = "\n".join(top_courses['course_description'].tolist())
                 
                 # Prepare conversation context
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
 
+                # Extend your prompt with RAG context
+                prompt_text = template.format(context=context, question=user_input) + "\n\nRelevant courses:\n" + rag_text
+                
                 # Format prompt
-                prompt_text = template.format(context=context, question=user_input)
+                #prompt_text = template.format(context=context, question=user_input)
                 
                 # Generate tutor response (OpenAI Model)
                 with st.chat_message("assistant"):
