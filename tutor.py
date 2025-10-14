@@ -477,7 +477,8 @@ else:
                 with st.chat_message("user"):
                     st.write(user_input)
 
-                vectorizer = TfidfVectorizer(stop_words='english')
+                # Load pre-fitted vectorizer
+                vectorizer = joblib.load('tfidf_vectorizer.joblib')
 
                 # Embed the user query
                 query_vec = vectorizer.transform([user_input]).toarray()[0]  # same TF-IDF space
