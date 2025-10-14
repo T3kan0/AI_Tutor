@@ -121,7 +121,7 @@ else:
     SUPABASE_KEY1 = st.secrets["vectors"]["SUPABASE_KEY1"]
 
     # Initialize Supabase client
-    supabase1: Client = create_client(SUPABASE_URL1, SUPABASE_KEY1)
+    supabase: Client = create_client(SUPABASE_URL1, SUPABASE_KEY1)
 # ----- Application Layout ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Title
     st.markdown("""
