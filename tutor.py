@@ -434,14 +434,20 @@ else:
 
         Answer:
         """
-        # Fetch all data from your table
-        rag_context = supabase.table("course_embeddings").select("*").execute()
-        # Convert to pandas DataFrame
-        df_rag = pd.DataFrame(rag_context.data)
+        # --- pull your RAG data from the database ---
+        @st.cache_data(show_spinner=False)
+        def load_rag_data():
+        
+            # Fetch all data from your table
+            rag_context = supabase.table("course_embeddings").select("*").execute()
+            # Convert to pandas DataFrame
+            df_rag = pd.DataFrame(rag_context.data)
 
-        # Convert string embeddings to list of floats
-        df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
-
+            # Convert string embeddings to list of floats
+            df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
+        return df_rag
+        
+        df_rag = load_rag_data()
 
         def handle_conversation():
             if new_chat:
