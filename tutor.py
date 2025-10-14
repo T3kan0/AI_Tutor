@@ -479,6 +479,8 @@ else:
 
                 vectorizer = TfidfVectorizer(stop_words='english')
 
+                # Embed the user query
+                query_vec = vectorizer.transform([user_input]).toarray()[0]  # same TF-IDF space
                 
                 
                 # Prepare conversation context
