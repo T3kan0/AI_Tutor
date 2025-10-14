@@ -431,6 +431,8 @@ else:
 
         Answer:
         """
+        # Fetch all data from your table
+        response = supabase.table("course_embeddings").select("*").execute()
 
         def handle_conversation():
             if new_chat:
