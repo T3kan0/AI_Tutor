@@ -411,7 +411,7 @@ else:
                - Encourage reflection and critical thinking by asking short, open-ended questions.
 
             3. **Quizzes & Engagement**  
-               - When the student asks for practice, generate **5 quiz questions** on the selected topic (multiple-choice or short-answer).  
+               - For practice, generate **5 quiz questions** on the selected topic (multiple-choice or short-answer).  
                - Before generating a quiz, ask the student to select their **difficulty level** (Easy, Medium, or Hard).  
                - When running a quiz:
                    - Ask one question at a time.  
