@@ -3,7 +3,7 @@ import fitz  # PyMuPDF for PDF processing
 from groq import Groq
 import os
 import pymupdf
-import re  
+import re
 from openai import OpenAI
 import textwrap
 import time
@@ -15,6 +15,12 @@ import ast
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import joblib
+
+# --- ADDED (access log) ---
+# lightweight, in-app logging of who/when using SQLite
+import sqlite3
+from datetime import datetime
+# --- /ADDED ---
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if not st.user.is_logged_in:
@@ -67,8 +73,8 @@ if not st.user.is_logged_in:
         <h3>Welcome to the Academic Student Tutorial and Excellence Programme (A_STEP)</h3>
         <h6>A UFS student driven academic support and development initiative</h6>
     </div>
-    """, unsafe_allow_html=True)    
-    
+    """, unsafe_allow_html=True)
+
     # --- Image Auto-Slideshow ---
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
@@ -81,18 +87,18 @@ if not st.user.is_logged_in:
 
     # Auto-refresh every 2 seconds
     st_autorefresh(interval=5000, key="slideshow_refresh")
-    
+
     slideshow_placeholder = st.empty()
     slideshow_placeholder.image(
         image_urls[st.session_state.slide_index],
         use_container_width=True
     )
-  
+
     # Update slideshow index for next run
     st.session_state.slide_index += 1
     if st.session_state.slide_index >= len(image_urls):
         st.session_state.slide_index = 0
-        
+
     st.markdown(
         """
         <div style="background-color: #1a1a1a; padding: 10px; border-radius: 8px;border: 2px solid white;">
@@ -113,8 +119,68 @@ if not st.user.is_logged_in:
         st.login()
 
 else:
+    # --- ADDED (access log) ---
+    # create a tiny local DB if it doesn't exist; keep it simple
+    DB_PATH = "access_logs.db"
+
+    def init_db():
+        con = sqlite3.connect(DB_PATH)
+        cur = con.cursor()
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS access_log (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ts_utc TEXT NOT NULL,
+                user_email TEXT,
+                user_name TEXT
+            )
+            """
+        )
+        con.commit()
+        con.close()
+
+    def log_sign_in_once(email: str | None, name: str | None):
+        # write a single entry per session so we don't spam
+        if st.session_state.get("_access_logged", False):
+            return
+        try:
+            con = sqlite3.connect(DB_PATH)
+            cur = con.cursor()
+            cur.execute(
+                "INSERT INTO access_log (ts_utc, user_email, user_name) VALUES (?, ?, ?)",
+                (datetime.utcnow().isoformat(timespec="seconds") + "Z", email, name),
+            )
+            con.commit()
+            con.close()
+            st.session_state["_access_logged"] = True
+        except Exception as e:
+            # don't break the app if logging fails
+            st.sidebar.warning(f"Access log write failed: {e}")
+
+    init_db()
+    # --- /ADDED ---
+
     # --- Logged-in Section ---
     st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
+
+    # --- ADDED (access log) ---
+    # record the sign-in event once per session
+    log_sign_in_once(st.user.email, st.user.name)
+
+    # optional quick viewer for recent events (purely for ops)
+    with st.sidebar.expander("Recent sign-ins (last 50)"):
+        try:
+            con = sqlite3.connect(DB_PATH)
+            df_logs = pd.read_sql_query(
+                "SELECT ts_utc, user_name, user_email FROM access_log ORDER BY id DESC LIMIT 50",
+                con,
+            )
+            con.close()
+            st.dataframe(df_logs, use_container_width=True)
+        except Exception as e:
+            st.caption(f"Could not load access logs: {e}")
+    # --- /ADDED ---
+
     if st.sidebar.button("Lesson Over? Sign-Out Here!"):
         st.logout()
         st.stop()
@@ -159,7 +225,6 @@ else:
         """, unsafe_allow_html=True)
     st.sidebar.markdown("![Alt Text](https://i.postimg.cc/dtqz6njz/log.png)")
 
-
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
             """
@@ -184,7 +249,7 @@ else:
     )
 
     # A button for claring the chat.
-    new_chat = st.sidebar.button("Clear or Start a New Chat!")   
+    new_chat = st.sidebar.button("Clear or Start a New Chat!")
 
     # The tutorial mode for our students to choose from.
     genre = st.sidebar.radio(
@@ -197,8 +262,7 @@ else:
     )
 # ----- Tutorial Mode Selected: Material Engagement --------------------------------------------------------------------------------------------------------------------------------------
     if genre == "***Material Engagement***":
-    
-    
+
         template = """
             Act as the **A_STEP GenAI Assistant Tutor** for the *Academic Student Excellence and Tutorial Programme (A_STEP)* 
             at the **University of the Free State (UFS)** in South Africa.  
@@ -280,8 +344,6 @@ else:
             **Answer:**
             """
 
-
-
         ## Extract information from the pdf files that are uploaded...
 
         def extract_text_from_pdf(pdf_file):
@@ -292,16 +354,15 @@ else:
                 text += page.get_text("text") + "\n"
             return text
 
-
         def handle_conversation():
-             
+
             # Sidebar upload
-            st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)    
+            st.sidebar.markdown("<h1 style='text-align: center;'>Upload PDFs</h1>", unsafe_allow_html=True)
             uploaded_file = st.sidebar.file_uploader(" ", type=["pdf"])
-        
+
             if new_chat:
-                st.session_state.messages = []  
-                st.session_state.pdf_content = ""  
+                st.session_state.messages = []
+                st.session_state.pdf_content = ""
                 st.success("New chat started! Upload a new PDF if needed.")
 
             # Initialize session state
@@ -309,7 +370,6 @@ else:
                 st.session_state.messages = []
             if "pdf_content" not in st.session_state:
                 st.session_state.pdf_content = ""
-
 
             # Process uploaded PDF
             if uploaded_file is not None:
@@ -329,9 +389,7 @@ else:
                 st.session_state.messages.append({"role": "user", "content": user_input})
                 with st.chat_message("user"):
                     st.write(user_input)
-                
-                # Create context (conversation history)
-                #context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
+
                 # Only keep last 5 messages to reduce token count
                 context_messages = st.session_state.messages[-5:]
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in context_messages])
@@ -342,7 +400,7 @@ else:
                         "Hi there 👋. Welcome to the ***Material Engagement*** Tutorial Session. I'm your A_STEP Assistant tutor ✨ . "
                         "I see that no PDF document has been uploaded yet 🤷 . "
                         "Use the upload button to navigate to a PDF document 📖, then we can proceed with your questions about it, otherwise you can switch to the ***Tutor Session Mode*** to Chat with a GenAI Tutor 🧑‍🏫."
-                        )
+                    )
                 else:
                     # Truncate PDF text to avoid token overflow
                     MAX_PDF_CHARS = 6000  # adjust depending on model/token limit
@@ -352,21 +410,19 @@ else:
 
                     # Build prompt with truncated text
                     prompt_text = template.format(
-                            pdf_content=pdf_text,   # <-- use truncated version
-                            context=context,
-                            question=user_input
-                            )
+                        pdf_content=pdf_text,   # <-- use truncated version
+                        context=context,
+                        question=user_input
+                    )
 
                     groq_response = client.chat.completions.create(
-                        model="openai/gpt-oss-20b",  
+                        model="openai/gpt-oss-20b",
                         messages=[{"role": "user", "content": prompt_text}],
                         temperature=0.7,
                         max_tokens=2000
                     )
 
-                    # With these lines:
                     raw_text = groq_response.choices[0].message.content
-                    # Remove the <think>…</think> part
                     response = re.sub(r"<think>.*?</think>", "", raw_text, flags=re.DOTALL).strip()
 
                 # Save AI response
@@ -376,11 +432,10 @@ else:
                 with st.chat_message("assistant"):
                     st.write(response)
 
-
         # Run the app
         if __name__ == "__main__":
             handle_conversation()
-# ----- Tutorial Mode Selected: Tutor Engagement --------------------------------------------------------------------------------------------------------------------------------------
+# ----- Tutorial Mode Selected: Tutor Engagement ----------------------------------------------------------------------
     else:
         template = """
             You are the **A_STEP GenAI Assistant Tutor**, part of the *Academic Student Excellence and Tutorial Programme (A_STEP)* at the University of the Free State (UFS), South Africa.
@@ -422,7 +477,7 @@ else:
 
             4. **Output Formats**  
                - **Explanations:** Use bullet points, numbered lists, or short paragraphs.  
-               - **Case or Concept Analysis:** Use a simple *Issue-Rule-Application-Conclusion (IRAC)* or structured reasoning format.  
+               - **Case or Concept Analysis:** Use a simple *Issue–Rule–Application–Conclusion (IRAC)* or structured reasoning format.  
                - Avoid LaTeX or code syntax unless explicitly requested.  
                - Add visuals or emojis to make content engaging and memorable.
 
@@ -446,7 +501,7 @@ else:
         # --- pull your RAG data from the database ---
         @st.cache_data(show_spinner=False)
         def load_rag_data():
-        
+
             # Fetch all data from your table
             rag_context = supabase.table("course_embeddings").select("*").execute()
             # Convert to pandas DataFrame
@@ -455,15 +510,15 @@ else:
             # Convert string embeddings to list of floats
             df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
             return df_rag
-        
+
         df_rag = load_rag_data()
         # Quick sanity check preview
         #st.write("✅ Loaded RAG data:", df_rag.shape)
         #st.dataframe(df_rag.head())
-        
+
         def handle_conversation():
             if new_chat:
-                st.session_state.messages = []  
+                st.session_state.messages = []
                 st.success("New chat started!")
 
             # Initialize session state
@@ -474,9 +529,9 @@ else:
             for message in st.session_state.messages:
                 with st.chat_message(message["role"]):
                     st.write(message["content"])
-        
+
             # User input
-            user_input = st.chat_input("Ask something...")        
+            user_input = st.chat_input("Ask something...")
 
             if user_input:
                 # Append user message
@@ -489,25 +544,22 @@ else:
 
                 # Embed the user query
                 query_vec = vectorizer.transform([user_input]).toarray()[0]  # same TF-IDF space
-                
+
                 # Compute similarity against stored embeddings
                 stored_embeddings = np.stack(df_rag['embedding'].values)  # already in app
                 similarities = cosine_similarity([query_vec], stored_embeddings)[0]
 
                 top_idx = similarities.argsort()[::-1][:5]
-                top_courses = df_rag.iloc[top_idx]                
+                top_courses = df_rag.iloc[top_idx]
                 # Combine top course descriptions as RAG context
                 rag_text = "\n".join(top_courses['course_description'].tolist())
-                
+
                 # Prepare conversation context
                 context = "\n".join([f"{m['role'].capitalize()}: {m['content']}" for m in st.session_state.messages])
 
                 # Extend your prompt with RAG context
                 prompt_text = template.format(context=context, question=user_input, rag_context=rag_text) + "\n\nRelevant courses:\n" + rag_text
-                
-                # Format prompt
-                #prompt_text = template.format(context=context, question=user_input)
-                
+
                 # Generate tutor response (OpenAI Model)
                 with st.chat_message("assistant"):
                     with st.spinner("Thinking... 💭"):
@@ -517,23 +569,16 @@ else:
                             temperature=0.7,
                             max_tokens=2000
                         )
-  
+
                         # Extract and clean response
                         raw_text = groq_response.choices[0].message.content
                         response = re.sub(r"<think>.*?</think>", "", raw_text, flags=re.DOTALL).strip()
 
                         st.write(response)
-                
+
                 # Save assistant message
                 st.session_state.messages.append({"role": "assistant", "content": response})
 
-        
         # Run the app
         if __name__ == "__main__":
             handle_conversation()
-
-
-
-
-
-
