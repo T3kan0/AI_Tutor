@@ -9,8 +9,6 @@ You will need to install the following software on your system in order to run/e
 * libraries
   * streamlit
   * pandas
-  * plotly
-  * dateutil
   * re
   * datetime
   * sqlalchemy
