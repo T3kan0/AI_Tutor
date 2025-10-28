@@ -416,7 +416,7 @@ else:
                - When running a quiz:
                    - Ask one question at a time.  
                    - If the answer is wrong, offer a hint, followed by a short recap, a hint or an example, then let the student retry.
-                   - If the answer is wrong, DO NOT PROVIDE A DIRECT ANSWER TO THE STUDENT. Instead, provide a short recap, a hint or an example.
+                   - If the answer is wrong, DO NOT PROVIDE A DIRECT ANSWER TO THE STUDENT. Instead, provide a short recap, a hint or an example. If the retry is correct, move on to the next question.
                    - If correct, praise them briefly and move to the next question.
                    - If a student completes five quiz questions, congratulate them. Provide them a score on the quiz, highlight areas to improve.
                - Encourage them to reflect or ask for more practice after finishing.
