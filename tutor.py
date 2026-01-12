@@ -110,7 +110,7 @@ if not st.user.is_logged_in:
         sign_in = st.button('Sign-in')
         st.markdown("</div>", unsafe_allow_html=True)
     if sign_in:
-        st.login()
+        st.login('Google')
 
 else:
     # --- Logged-in Section ---
