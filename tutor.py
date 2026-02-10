@@ -25,16 +25,7 @@ def login_screen():
 
 if not st.user.is_logged_in:
     login_screen()
-#else:
- #   st.user
 
-#user = st.user
-#email = getattr(user, "email", None)
-#name = getattr(user, "name", None)
-#if not email:
- #   st.error("Unable to determine user identity.")
- #   st.stop()
-#if not user:
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
         """
@@ -132,23 +123,6 @@ else:
     st.user
 # --- Logged-in Section --------------------------------------------------------
 
-# Authorization check (VERY important)
-#if not st.user.email.endswith("@ufs.ac.za"):
- #   st.error("This application is restricted to UFS student accounts.")
-  #  st.stop()
-
-   # st.sidebar.success(f"Welcome, {st.user.name}")
-    #st.sidebar.caption(st.user.email)
-
-    # ❌ REMOVE logout button — Cloud does not support app-level logout
-    #st.sidebar.info("To sign out, use the Streamlit Cloud menu (bottom-right).")
-
-#else:
-    # --- Logged-in Section ---
-    #st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
-    #if st.sidebar.button("Lesson Over? Sign-Out Here!"):
-        #st.logout()
-        #st.stop()
 # ------ GenAI API ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Load API key from Streamlit secrets
     api_key = st.secrets["groq"]["api_key"]
