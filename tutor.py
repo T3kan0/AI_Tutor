@@ -117,8 +117,8 @@ if not st.user.is_logged_in:
         st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
         sign_in = st.button('Sign-in')
         st.markdown("</div>", unsafe_allow_html=True)
-    if sign_in:
-        st.login()
+    #if sign_in:
+     #   st.login()
 else:
     st.user
     st.button("Log out", on_click=st.logout)
