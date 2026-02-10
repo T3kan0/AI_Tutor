@@ -112,11 +112,12 @@ if not st.user.is_logged_in:
         """,
         unsafe_allow_html=True
     )
-    login_screen()
+    #login_screen()
     col1, col2, col3 = st.columns([2, 1, 2])
     with col2:
         st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
-        sign_in = st.button('Sign-in')
+        #sign_in = st.button('Sign-in')
+        login_screen()
         st.markdown("</div>", unsafe_allow_html=True)
 
 else:
