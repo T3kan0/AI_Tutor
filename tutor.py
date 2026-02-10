@@ -25,8 +25,8 @@ def login_screen():
 
 if not st.user.is_logged_in:
     login_screen()
-else:
-    st.user
+#else:
+ #   st.user
 
 #user = st.user
 #email = getattr(user, "email", None)
@@ -128,7 +128,8 @@ else:
         st.markdown("</div>", unsafe_allow_html=True)
     if sign_in:
         st.login()
-
+else:
+    st.user
 # --- Logged-in Section --------------------------------------------------------
 
 # Authorization check (VERY important)
@@ -142,6 +143,8 @@ else:
     # ❌ REMOVE logout button — Cloud does not support app-level logout
     #st.sidebar.info("To sign out, use the Streamlit Cloud menu (bottom-right).")
 
+else:
+    st.user
 #else:
     # --- Logged-in Section ---
     #st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
