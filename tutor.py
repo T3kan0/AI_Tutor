@@ -20,7 +20,9 @@ import joblib
 user = st.user
 email = getattr(user, "email", None)
 name = getattr(user, "name", None)
-
+if not email:
+    st.error("Unable to determine user identity.")
+    st.stop()
 if not user:
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
