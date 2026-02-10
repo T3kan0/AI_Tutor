@@ -17,13 +17,24 @@ from sklearn.metrics.pairwise import cosine_similarity
 import joblib
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-user = st.user
-email = getattr(user, "email", None)
-name = getattr(user, "name", None)
-if not email:
-    st.error("Unable to determine user identity.")
-    st.stop()
-if not user:
+
+def login_screen():
+    st.header("This app is private.")
+    st.subheader("Please log in.")
+    st.button("Log in with Google", on_click=st.login)
+
+if not st.user.is_logged_in:
+    login_screen()
+else:
+    st.user
+
+#user = st.user
+#email = getattr(user, "email", None)
+#name = getattr(user, "name", None)
+#if not email:
+ #   st.error("Unable to determine user identity.")
+ #   st.stop()
+#if not user:
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
         """
