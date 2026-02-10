@@ -17,7 +17,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import joblib
 
 # --- Login Section --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-if not st.user.is_logged_in:
+if not st.user:
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
         """
