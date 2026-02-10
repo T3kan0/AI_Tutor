@@ -120,6 +120,7 @@ if not st.user.is_logged_in:
 
 else:
     #st.user
+    st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
     st.sidebar.button("Log out", on_click=st.logout)
 # --- Logged-in Section --------------------------------------------------------
 
