@@ -132,17 +132,17 @@ else:
 # --- Logged-in Section --------------------------------------------------------
 
 # Authorization check (VERY important)
-if not st.user.email.endswith("@ufs.ac.za"):
-    st.error("This application is restricted to UFS student accounts.")
-    st.stop()
+#if not st.user.email.endswith("@ufs.ac.za"):
+ #   st.error("This application is restricted to UFS student accounts.")
+  #  st.stop()
 
-    st.sidebar.success(f"Welcome, {st.user.name}")
-    st.sidebar.caption(st.user.email)
+   # st.sidebar.success(f"Welcome, {st.user.name}")
+    #st.sidebar.caption(st.user.email)
 
     # ❌ REMOVE logout button — Cloud does not support app-level logout
-    st.sidebar.info("To sign out, use the Streamlit Cloud menu (bottom-right).")
+    #st.sidebar.info("To sign out, use the Streamlit Cloud menu (bottom-right).")
 
-else:
+#else:
     # --- Logged-in Section ---
     #st.sidebar.success(f"Welcome, {st.user.name} {st.user.email}!")
     #if st.sidebar.button("Lesson Over? Sign-Out Here!"):
