@@ -24,7 +24,7 @@ def login_screen():
     st.button("Log in with Google", on_click=st.login)
 
 if not st.user.is_logged_in:
-    login_screen()
+    #login_screen()
 
     # Center the "New Chat" button using HTML and CSS
     st.markdown(
@@ -112,6 +112,7 @@ if not st.user.is_logged_in:
         """,
         unsafe_allow_html=True
     )
+    login_screen()
     col1, col2, col3 = st.columns([2, 1, 2])
     with col2:
         st.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
