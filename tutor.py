@@ -119,7 +119,7 @@ if not st.user.is_logged_in:
         st.markdown("</div>", unsafe_allow_html=True)
 
 else:
-    st.user
+    #st.user
     st.button("Log out", on_click=st.logout)
 # --- Logged-in Section --------------------------------------------------------
 
