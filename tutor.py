@@ -35,7 +35,7 @@ def _init_debug_logging():
         pass
     try:
         st.set_option("logger.level", "debug")
-        st.set_option("client.showErrorDetails", True)
+        st.set_option("client.showErrorDetails", False)
     except Exception:
         pass
 
@@ -128,34 +128,6 @@ if not st.user.is_logged_in:
         unsafe_allow_html=True,
     )
 
-    # Override: make the outer chat container transparent and style only inner markdown as the bubble
-    st.markdown(
-        """
-        <style>
-        /* Hide outer container background/border to avoid double bubble */
-        [data-testid="stChatMessage"] { background: transparent !important; box-shadow: none !important; }
-        /* Assistant bubble (left) */
-        [data-testid="stChatMessage"]:not(:has(img[alt="user"])) .stMarkdown,
-        [data-testid="stChatMessage"]:not(:has(img[alt="user"])) .stMarkdown > div {
-            display: inline-block; max-width: 85%; padding: 10px 12px; border-radius: 16px;
-            background: #f1f3f5; color: #111; border: 1px solid #e6e8eb;
-            margin-right: auto; margin-left: 0;
-        }
-        /* User bubble (right) */
-        [data-testid="stChatMessage"]:has(img[alt="user"]) .stMarkdown,
-        [data-testid="stChatMessage"]:has(img[alt="user"]) .stMarkdown > div {
-            display: inline-block; max-width: 85%; padding: 10px 12px; border-radius: 16px;
-            background: #ffffff; color:#111; border:1px solid #c9cdd2;
-            margin-left: auto; margin-right: 0;
-        }
-        /* Keep tables flat inside the bubble */
-        [data-testid="stChatMessage"] .stMarkdown table { border-collapse: collapse; border: none; width: 100%; }
-        [data-testid="stChatMessage"] .stMarkdown th,
-        [data-testid="stChatMessage"] .stMarkdown td { border: none; padding: 6px 8px; background: transparent; }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
     # Slideshow
     image_urls = [
         "https://i.postimg.cc/BQsN9j4F/students3.jpg",
@@ -191,8 +163,6 @@ if not st.user.is_logged_in:
     if saved_key:
         if has_valid_key:
             st.success("Groq API key saved — you can sign in now.")
-        else:
-            st.warning("That does not look like a Groq key yet (they start with gsk_). Double-check and try again.")
     else:
         st.info("Need help? Click the link above to open the Groq console and copy your key.")
 
@@ -227,11 +197,9 @@ else:
     # -------- Access logging to Supabase (login + logout) ------------------------
     def _report_access_log_status(message: str, level: str = "info"):
         try:
-            if level == "error":
-                st.sidebar.error(message)
-            elif level == "warning":
-                st.sidebar.warning(message)
-            elif level == "success":
+            if level in ("error", "warning"):
+                return
+            if level == "success":
                 st.sidebar.success(message)
             else:
                 st.sidebar.info(message)
@@ -284,11 +252,10 @@ else:
         try:
             url, key = _get_root_supabase_keys()
             if not url or not key:
-                _report_access_log_status("Supabase URL/Key missing in secrets for access logs.", level="warning")
                 return None
             return create_client(url, key)
         except Exception as e:
-            _report_access_log_status(f"Failed to init Supabase client: {e}", level="error")
+            _log_exc("Failed to init Supabase client", e)
             return None
 
     def _record_login_if_needed(supabase_client, email, name):
@@ -307,7 +274,7 @@ else:
                 st.session_state["session_started_at"] = time.time()
                 # success toast intentionally suppressed
         except Exception as e:
-            _report_access_log_status(f"Access log insert failed: {e}", level="error")
+            _log_exc("Access log insert failed", e)
 
     def _record_logout_update(supabase_client):
         if not supabase_client:
@@ -324,7 +291,7 @@ else:
             supabase_client.table("user_access_logs").update({"meta": meta}).eq("id", log_id).execute()
             _report_access_log_status("Access log updated with logout time.", level="success")
         except Exception as e:
-            _report_access_log_status(f"Access log update failed: {e}", level="error")
+            _log_exc("Access log update failed", e)
 
     _access_sb = _get_access_supabase_client()
     _record_login_if_needed(_access_sb, _email, _name)
@@ -338,7 +305,6 @@ else:
     # ============================== GenAI API (Groq) ============================
     api_key = _resolve_groq_api_key()
     if not api_key or not api_key.startswith("gsk_"):
-        st.error("Groq API key missing or invalid. Add your key via the Groq setup panel in the sidebar.")
         st.stop()
 
     py_ver = _sanitize_ascii(platform.python_version())
@@ -364,7 +330,7 @@ else:
             url, key = _get_root_supabase_keys()
             return create_client(url, key) if url and key else None
         except Exception as e:
-            _report_access_log_status(f"Failed to init vectors Supabase client: {e}", level="error")
+            # _log_exc("Failed to init vectors Supabase client", e)
             return None
 
     supabase: Client = _get_vectors_supabase_client()
@@ -482,27 +448,7 @@ else:
         with st.chat_message(role):
             st.markdown(txt)
 
-    # Single-bubble styling: assistant left (light gray), user right (white)
-    st.markdown(
-        """
-        <style>
-        [data-testid=\"stChatMessage\"] { background: transparent !important; box-shadow:none !important; }
-        [data-testid=\"stChatMessage\"] > div:nth-child(2) { display:flex; }
-        [data-testid=\"stChatMessage\"]:not(:has(img[alt=\"user\"])) > div:nth-child(2) { justify-content:flex-start; }
-        [data-testid=\"stChatMessage\"]:has(img[alt=\"user\"]) > div:nth-child(2) { justify-content:flex-end; }
-        [data-testid=\"stChatMessage\"] .stMarkdown,
-        [data-testid=\"stChatMessage\"] .stMarkdown > div { display:inline-block !important; max-width:85%; padding:10px 12px; border-radius:16px; line-height:1.55; }
-        [data-testid=\"stChatMessage\"]:not(:has(img[alt=\"user\"])) .stMarkdown,
-        [data-testid=\"stChatMessage\"]:not(:has(img[alt=\"user\"])) .stMarkdown > div { background:#f1f3f5 !important; color:#111 !important; border:1px solid #e6e8eb !important; }
-        [data-testid=\"stChatMessage\"]:has(img[alt=\"user\"]) .stMarkdown,
-        [data-testid=\"stChatMessage\"]:has(img[alt=\"user\"]) .stMarkdown > div { background:#ffffff !important; color:#111 !important; border:1px solid #c9cdd2 !important; }
-        [data-testid=\"stChatMessage\"] .stMarkdown table { border-collapse:collapse; border:none; width:100%; }
-        [data-testid=\"stChatMessage\"] .stMarkdown th,
-        [data-testid=\"stChatMessage\"] .stMarkdown td { border:none; padding:6px 8px; background:transparent; }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+
 
     st.markdown(
         """
@@ -665,7 +611,6 @@ else:
                     raw_text = groq_response.choices[0].message.content
                     response = re.sub(r"<think>.*?</think>", "", raw_text, flags=re.DOTALL).strip()
                 except Exception:
-                    st.error("AI request failed. Please verify your Groq API key in secrets.toml.")
                     st.stop()
 
         st.session_state.messages.append({"role": "assistant", "content": response})
@@ -744,7 +689,6 @@ else:
                     df_rag["embedding"] = df_rag["embedding"].apply(lambda x: np.array(ast.literal_eval(x)))
                 return df_rag
             except Exception:
-                st.warning("Could not reach the course database; continuing without RAG context.")
                 return pd.DataFrame(columns=["embedding", "course_description"]) 
 
         df_rag = load_rag_data()
@@ -796,7 +740,6 @@ else:
                             extra_headers=safe_headers,
                         )
                     except Exception:
-                        st.error("AI request failed. Please verify your Groq API key in secrets.toml.")
                         return
                     raw_text = groq_response.choices[0].message.content
                     response = re.sub(r"<think>.*?</think>", "", raw_text, flags=re.DOTALL).strip()
