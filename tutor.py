@@ -186,7 +186,7 @@ if not st.user.is_logged_in:
         c1, c2, c3 = st.columns([2, 1, 2])
         with c2:
             if st.button("Sign-in"):
-                st.login("google")
+                #st.login("google")
 
 else:
     # ============================== Logged-in ====================================
