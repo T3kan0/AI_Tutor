@@ -187,6 +187,7 @@ if not st.user.is_logged_in:
         with c2:
             if st.button("Sign-in"):
                 #st.login("google")
+                login_screen()
 
 else:
     # ============================== Logged-in ====================================
