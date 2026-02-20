@@ -109,6 +109,11 @@ class SafeGroq(Groq):
         return safe
 
 
+def login_screen():
+    st.header("This app is private.")
+    st.subheader("Please log in.")
+    st.button("Log in with Google", on_click=st.login)
+
 # ============================== Auth (Streamlit built-in) ========================
 if not st.user.is_logged_in:
     st.markdown(
