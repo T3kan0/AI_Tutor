@@ -331,7 +331,7 @@ else:
         """,
         unsafe_allow_html=True,
     )
-    new_chat = st.sidebar.button("Clear or Start a New Chat!", key="clear_new_chat_sidebar")
+    new_chat = st.sidebar.button("Clear Chat or Start a New Chat!", key="clear_new_chat_sidebar")
 
     # Sidebar navigation (revert to original controls)
     st.sidebar.markdown("---")
