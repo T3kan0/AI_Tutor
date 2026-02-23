@@ -144,49 +144,12 @@ if not st.user.is_logged_in:
     st.empty().image(image_urls[st.session_state.slide_index], use_container_width=True)
     st.session_state.slide_index = (st.session_state.slide_index + 1) % len(image_urls)
 
-    #st.markdown("### Step 1: Bring your own Groq API key")
-    #st.markdown(
-     #   f"""
-     #   - Get a free key from [Groq Console]({GROQ_KEYS_URL}) (opens in a new tab).
-     #   - Paste it below — the app keeps it only in this browser session.
-     #   """,
-     #   unsafe_allow_html=False,
-    #)
-    #api_key_before_login = st.text_input(
-    #    "Paste your Groq API key",
-    #    value=st.session_state.get("user_groq_api_key", ""),
-    #    placeholder="gsk_...",
-    #    type="password",
-    #    key="groq_api_key_before_login",
-    #    help="Create a key on Groq, then paste it here to use your own quota.",
-    #)
-    #_remember_user_api_key(api_key_before_login)
 
-    #saved_key = st.session_state.get("user_groq_api_key", "")
-    #has_valid_key = saved_key.startswith("gsk_")  # Groq API keys currently start with gsk_
-    #if saved_key:
-    #    if has_valid_key:
-    #        st.success("Groq API key saved — you can sign in now.")
-    #else:
-    #    st.info("Need help? Click the link above to open the Groq console and copy your key.")
-
-    #if has_valid_key:
-        #st.markdown("### Step 2: Sign in with your UFS account")
-        #st.markdown(
-        #    """
-        #    <div style="background-color: #1a1a1a; padding: 10px; border-radius: 8px; border: 2px solid white;">
-        #        <p style="color: white; font-size: 16px; text-align: center;">
-        #            Please sign in using your UFS Google Student Account (ufs4life) to access the GenAI Assistant Tutor.
-        #        </p>
-        #    </div>
-        #    """,
-        #    unsafe_allow_html=True,
-        #)
     c1, c2, c3 = st.columns([2, 1, 2])
     with c2:
-        if st.button("Sign-in"):
-                #st.login("google")
-            login_screen()
+        #if st.button("Sign-in"):
+        #st.login("google")
+        login_screen()
 
 else:
     # ============================== Logged-in ====================================
