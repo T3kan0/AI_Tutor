@@ -340,8 +340,6 @@ else:
         [":rainbow[Tutor Session Mode]", "***Material Engagement***"],
         captions=["Engagement with a GenAI tutor", "Material Assistance with GenAI"],
     )
-    #new_chat = st.sidebar.button("Clear or Start a New Chat!", key="clear_new_chat_sidebar")
-
     
     # Convert LaTeX delimiters and render with markdown so math shows nicely
     LATEX_CODE_BLOCK_RE = _re.compile(r"```.*?```", _re.DOTALL)
