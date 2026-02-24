@@ -579,8 +579,8 @@ else:
                 except Exception:
                     st.stop()
 
-        st.session_state.messages.append({"role": "assistant", "content": response})
-        render_bubble("assistant", response)
+                st.session_state.messages.append({"role": "assistant", "content": response})
+                render_bubble("assistant", response)
 
     # ============================== Tutor Session Mode ==========================
     else:
